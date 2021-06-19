@@ -1,21 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, View, Image, Text, Button } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+
+const Cat = (props) => {
+  const [isHungry, setIsHungry] = useState(true);
+
+    return (
+      <View>
+        <Text>I am {props.name}, and I am { isHungry ? "hungry" : "full"} </Text>
+
+        <Button onPress={() => {
+          setIsHungry(false)
+        }}
+        disabled={!isHungry} title={isHungry ? "Pour some milk please" : "I'm done"}>
+        </Button>
+        </View>  
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const Cafe = () => {
+  return (
+<SafeAreaView style={{flex: 1}}>
+<>
+<Cat name="Amy"></Cat>
+<Cat name="Hannah"></Cat>
+</>
+</SafeAreaView>
+  )
+}
+
+export default Cafe
+
+
+
+
